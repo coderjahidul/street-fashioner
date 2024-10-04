@@ -66,16 +66,9 @@ get_header();
                         <!-- /loop post -->
 
                         <!-- post pagination -->
-                        <div class="pagination">
-                            <?php
-                            the_posts_pagination(array(
-                                'mid_size' => 2,
-                                'prev_text' => __('&larr;', 'textdomain'),
-                                'next_text' => __('&rarr;', 'textdomain'),
-                            ));
-                            ?>
-                        </div>
+                        <?php custom_pagination(); ?>
                         <!-- /post pagination -->
+
                     </div>
 
                     <div class="span4">

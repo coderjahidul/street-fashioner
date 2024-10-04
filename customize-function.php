@@ -95,4 +95,47 @@ function streetfashioner_customize_register_home_planning( $wp_customize ) {
 }
 add_action( 'customize_register', 'streetfashioner_customize_register_home_planning' );
 
+// Custom pagination
+function custom_pagination() {
+    global $wp_query;
+
+    // Get the total number of pages
+    $total_pages = $wp_query->max_num_pages;
+
+    // Only paginate if we have more than one page
+    if ($total_pages > 1) {
+        $current_page = max(1, get_query_var('paged'));
+
+        echo '<div class="pagination">';
+        echo '<ul>';
+
+        // Previous page link
+        if ($current_page > 1) {
+            echo '<li><a href="' . get_pagenum_link($current_page - 1) . '">&larr;</a></li>';
+        } else {
+            echo '<li class="disabled"><a href="#">&larr;</a></li>'; // Disabled if on the first page
+        }
+
+        // Loop through pages and create pagination links
+        for ($i = 1; $i <= $total_pages; $i++) {
+            if ($i === $current_page) {
+                echo '<li class="active"><a href="#">' . $i . '</a></li>'; // Current page
+            } else {
+                echo '<li><a href="' . get_pagenum_link($i) . '">' . $i . '</a></li>'; // Other page links
+            }
+        }
+
+        // Next page link
+        if ($current_page < $total_pages) {
+            echo '<li><a href="' . get_pagenum_link($current_page + 1) . '">&rarr;</a></li>';
+        } else {
+            echo '<li class="disabled"><a href="#">&rarr;</a></li>'; // Disabled if on the last page
+        }
+
+        echo '</ul>';
+        echo '</div>';
+    }
+}
+
+
 
