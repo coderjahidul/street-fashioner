@@ -126,67 +126,41 @@ get_header(); ?>
             	<div class="row">
                     <div class="span12">
                         <ul id="mycarousel2" class="jcarousel-skin-tango">
+                            <?php 
+                            // Get all posts
+                            $args = array(
+                                'numberposts' => 10,
+                                'orderby' => 'post_date',
+                                'order' => 'DESC',
+                                'post_type' => 'post',
+                                'post_status' => 'publish',
+                            );
+                            $myposts = get_posts( $args );
+                            foreach( $myposts as $post ) {
+                                setup_postdata($post);
+                            ?>
                             <li>
-                            	<div class="post_carousel">
-                                	<img src="<?php echo get_template_directory_uri(); ?>/img/home_blog/1.jpg" alt="" />
-                                	<div class="title_t"><a href="#">ipsum dolor ac egestas mas</a></div>
-                                    <div class="post_meta">
-                                		Posted by <a href="#">John Doe</a>  /  15 apr  / In <a href="#">Vacation</a>
+                                <div class="post_carousel">
+                                    <?php if ( has_post_thumbnail() ) : ?>
+                                        <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>" />
+                                    <?php endif; ?>
+                                    <div class="title_t">
+                                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                     </div>
-                                    Ut nisl turpis, tristique tincidunt cursus sed, aliquet nec odio. Integer ornare tincidunt neque a ristiquet phasellus mollis tortor. <a href="#" class="arrow_link">Read more...</a>
-                                </div>	
+                                    <div class="post_meta">
+                                        Posted by <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> 
+                                        / <?php echo get_the_date('d M Y'); ?>
+                                    </div>
+                                    <div class="post_excerpt">
+                                        <?php echo wp_trim_words( get_the_content(), 30, '<a href="' . esc_url( get_permalink() ) . '"> Read more...</a>' ); ?>
+                                    </div>
+                                </div>  
                             </li>
-                            <li>
-                            	<div class="post_carousel">
-                                	<img src="<?php echo get_template_directory_uri(); ?>/img/home_blog/2.jpg" alt="" />
-                                	<div class="title_t"><a href="#">vestibulum egestas tortor</a></div>
-                                    <div class="post_meta">
-                                		Posted by <a href="#">John Doe</a>  /  15 apr  / In <a href="#">Vacation</a>
-                                    </div>
-                                    Ut nisl turpis, tristique tincidunt cursus sed, aliquet nec odio. Integer ornare tincidunt neque a ristiquet phasellus mollis tortor. <a href="#" class="arrow_link">Read more...</a>
-                                </div>	
-                            </li>
-                            <li>
-                            	<div class="post_carousel">
-                                	<img src="<?php echo get_template_directory_uri(); ?>/img/home_blog/3.jpg" alt="" />
-                                	<div class="title_t"><a href="#">Quisque sodales dolor</a></div>
-                                    <div class="post_meta">
-                                		Posted by <a href="#">John Doe</a>  /  15 apr  / In <a href="#">Vacation</a>
-                                    </div>
-                                    Ut nisl turpis, tristique tincidunt cursus sed, aliquet nec odio. Integer ornare tincidunt neque a ristiquet phasellus mollis tortor. <a href="#" class="arrow_link">Read more...</a>
-                                </div>	
-                            </li>
-                            <li>
-                            	<div class="post_carousel">
-                                	<img src="<?php echo get_template_directory_uri(); ?>/img/home_blog/4.jpg" alt="" />
-                                	<div class="title_t"><a href="#">ipsum dolor ac egestas mas</a></div>
-                                    <div class="post_meta">
-                                		Posted by <a href="#">John Doe</a>  /  15 apr  / In <a href="#">Vacation</a>
-                                    </div>
-                                    Ut nisl turpis, tristique tincidunt cursus sed, aliquet nec odio. Integer ornare tincidunt neque a ristiquet phasellus mollis tortor. <a href="#" class="arrow_link">Read more...</a>
-                                </div>	
-                            </li> 
-                            <li>
-                            	<div class="post_carousel">
-                                	<img src="<?php echo get_template_directory_uri(); ?>/img/home_blog/1.jpg" alt="" />
-                                	<div class="title_t"><a href="#">Tristique cursus tincidunt</a></div>
-                                    <div class="post_meta">
-                                		Posted by <a href="#">John Doe</a>  /  15 apr  / In <a href="#">Vacation</a>
-                                    </div>
-                                    Ut nisl turpis, tristique tincidunt cursus sed, aliquet nec odio. Integer ornare tincidunt neque a ristiquet phasellus mollis tortor. <a href="#" class="arrow_link">Read more...</a>
-                                </div>	
-                            </li>
-                            <li>
-                            	<div class="post_carousel">
-                                	<img src="<?php echo get_template_directory_uri(); ?>/img/home_blog/2.jpg" alt="" />
-                                	<div class="title_t"><a href="#">ipsum dolor ac egestas mas</a></div>
-                                    <div class="post_meta">
-                                		Posted by <a href="#">John Doe</a>  /  15 apr  / In <a href="#">Vacation</a>
-                                    </div>
-                                    Ut nisl turpis, tristique tincidunt cursus sed, aliquet nec odio. Integer ornare tincidunt neque a ristiquet phasellus mollis tortor. <a href="#" class="arrow_link">Read more...</a>
-                                </div>	
-                            </li>                                                                                   
-                        </ul>                        
+                            <?php
+                            }
+                            wp_reset_postdata(); // Reset the global $post object to avoid conflicts
+                            ?>                                                                                
+                        </ul>                  
                     </div>                
                 </div>                
             </div>
