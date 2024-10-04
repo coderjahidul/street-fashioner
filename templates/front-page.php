@@ -20,48 +20,32 @@ get_header(); ?>
         <!--planning-->
         <div class="wrap planning">
             <div class="container">
-                <div class="row">
+            <div class="row">
+                <?php for ( $i = 1; $i <= 4; $i++ ) : ?>
                     <div class="span3">
                         <a href="#">
-                        	<span class="img_icon icon1" style="background-image:url(<?php echo get_template_directory_uri(); ?>/img/icon1.png);"></span>
-                            <span class="link_title">egestas dolor</span>
-                        	Nunc vel arcu arcu. Nulla mollis feugiat dui id tincidunt. Aenean ac lobortis elit.
+                            <?php if ( get_theme_mod( 'home_planning_icon_' . $i ) ) : ?>
+                                <span class="img_icon icon<?php echo $i; ?>" style="background-image:url(<?php echo esc_url( get_theme_mod( 'home_planning_icon_' . $i ) ); ?>);"></span>
+                            <?php endif; ?>
+                            <span class="link_title"><?php echo esc_html( get_theme_mod( 'home_planning_title_' . $i ) ); ?></span>
+                            <p><?php echo esc_html( get_theme_mod( 'home_planning_description_' . $i ) ); ?></p>
                         </a>
                     </div>
-                    <div class="span3">
-                        <a href="#">
-                        	<span class="img_icon icon2" style="background-image:url(<?php echo get_template_directory_uri(); ?>/img/icon2.png);"></span>
-                            <span class="link_title">lorem ipsum</span>
-                        	Nunc vel arcu arcu. Nulla mollis feugiat dui id tincidunt. Aenean ac lobortis elit.
-                        </a>
-                    </div>
-                    <div class="span3">
-                        <a href="#">
-                        	<span class="img_icon icon3" style="background-image:url(<?php echo get_template_directory_uri(); ?>/img/icon3.png);"></span>
-                            <span class="link_title">vestilum eget</span>
-                        	Nunc vel arcu arcu. Nulla mollis feugiat dui id tincidunt. Aenean ac lobortis elit.
-                        </a>
-                    </div>
-                    <div class="span3">
-                        <a href="#">
-                        	<span class="img_icon icon4" style="background-image:url(<?php echo get_template_directory_uri(); ?>/img/icon4.png);"></span>
-                            <span class="link_title">nulla feugiat</span>
-                        	Nunc vel arcu arcu. Nulla mollis feugiat dui id tincidunt. Aenean ac lobortis elit.
-                        </a>
-                    </div>                           	
-                </div>
+                <?php endfor; ?>
+            </div>
+
             </div>
         </div>
         <!--//planning-->
         
         <!--Welcome-->
-        <div class="wrap block">
+        <!-- <div class="wrap block">
             <div class="container welcome_block">
             	<div class="welcome_line welcome_t"></div>
             	Cras vulputate pretium massa gravida egestas consectetur?<span>Lorem ipsum dolor sit amet &amp; consectetur adipiscing elit!</span>
                 <div class="welcome_line welcome_b"></div>
             </div>
-        </div>
+        </div> -->
         <!--//Welcome-->         
         
         <!--featured works-->

@@ -49,3 +49,50 @@ function streetfashioner_customize_register_slider( $wp_customize ) {
 }
 add_action( 'customize_register', 'streetfashioner_customize_register_slider' );
 
+// Home page planning
+function streetfashioner_customize_register_home_planning( $wp_customize ) {
+    // Add Home Planning Section
+    $wp_customize->add_section( 'home_planning_section', array(
+        'title'    => __( 'Home Planning', 'streetfashioner' ),
+        'priority' => 35,
+    ) );
+
+    // Loop through to add settings for each item (e.g., icon, title, description)
+    for ( $i = 1; $i <= 4; $i++ ) {
+        // Icon image upload setting
+        $wp_customize->add_setting( 'home_planning_icon_' . $i, array(
+            'default'   => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'home_planning_icon_' . $i, array(
+            'label'    => __( 'Icon ' . $i, 'streetfashioner' ),
+            'section'  => 'home_planning_section',
+            'settings' => 'home_planning_icon_' . $i,
+        ) ) );
+
+        // Title setting
+        $wp_customize->add_setting( 'home_planning_title_' . $i, array(
+            'default'   => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ) );
+        $wp_customize->add_control( 'home_planning_title_' . $i, array(
+            'label'    => __( 'Title ' . $i, 'streetfashioner' ),
+            'section'  => 'home_planning_section',
+            'type'     => 'text',
+        ) );
+
+        // Description setting
+        $wp_customize->add_setting( 'home_planning_description_' . $i, array(
+            'default'   => '',
+            'sanitize_callback' => 'sanitize_textarea_field',
+        ) );
+        $wp_customize->add_control( 'home_planning_description_' . $i, array(
+            'label'    => __( 'Description ' . $i, 'streetfashioner' ),
+            'section'  => 'home_planning_section',
+            'type'     => 'textarea',
+        ) );
+    }
+}
+add_action( 'customize_register', 'streetfashioner_customize_register_home_planning' );
+
+
