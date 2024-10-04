@@ -6,13 +6,16 @@ get_header(); ?>
         <!--slider-->
         <div id="main_slider">
             <div class="camera_wrap" id="camera_wrap_1">
-                <div data-src="<?php echo get_template_directory_uri(); ?>/img/slider/1.jpg"></div>
-                <div data-src="<?php echo get_template_directory_uri(); ?>/img/slider/2.jpg"></div>
-                <div data-src="<?php echo get_template_directory_uri(); ?>/img/slider/3.jpg"></div>                                      
+                <?php for ( $i = 1; $i <= 3; $i++ ) : ?>
+                    <?php if ( get_theme_mod( 'slider_image_' . $i ) ) : ?>
+                        <div data-src="<?php echo esc_url( get_theme_mod( 'slider_image_' . $i ) ); ?>"></div>
+                    <?php endif; ?>
+                <?php endfor; ?>
             </div><!-- #camera_wrap_1 -->
             <div class="clear"></div>	
         </div>        
         <!--//slider-->
+
                        
         <!--planning-->
         <div class="wrap planning">
