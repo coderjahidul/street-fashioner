@@ -37,13 +37,28 @@
                         </div>
                         <div class="span8">
                         	<div class="follow_us">
-                                <ul>
-                                    <li><a href="#" class="facebook">Facebook</a></li>
-                                    <li><a href="#" class="vimeo">Vimeo</a></li>
-                                    <li><a href="#" class="tumbrl">Tumbrl</a></li>
-                                    <li><a href="#" class="twitter">Twitter</a></li>
-                                    <li><a href="#" class="delicious">Delicious</a></li>
-                                </ul>
+                            <ul>
+                                <?php if ( get_theme_mod( 'facebook_link' ) ) : ?>
+                                    <li><a href="<?php echo esc_url( get_theme_mod( 'facebook_link' ) ); ?>" class="facebook" target="_blank">Facebook</a></li>
+                                <?php endif; ?>
+                                
+                                <?php if ( get_theme_mod( 'vimeo_link' ) ) : ?>
+                                    <li><a href="<?php echo esc_url( get_theme_mod( 'vimeo_link' ) ); ?>" class="vimeo" target="_blank">Vimeo</a></li>
+                                <?php endif; ?>
+
+                                <?php if ( get_theme_mod( 'tumblr_link' ) ) : ?>
+                                    <li><a href="<?php echo esc_url( get_theme_mod( 'tumblr_link' ) ); ?>" class="tumblr" target="_blank">Tumblr</a></li>
+                                <?php endif; ?>
+
+                                <?php if ( get_theme_mod( 'twitter_link' ) ) : ?>
+                                    <li><a href="<?php echo esc_url( get_theme_mod( 'twitter_link' ) ); ?>" class="twitter" target="_blank">Twitter</a></li>
+                                <?php endif; ?>
+
+                                <?php if ( get_theme_mod( 'delicious_link' ) ) : ?>
+                                    <li><a href="<?php echo esc_url( get_theme_mod( 'delicious_link' ) ); ?>" class="delicious" target="_blank">Delicious</a></li>
+                                <?php endif; ?>
+                            </ul>
+
                             </div>
                             <div class="clear"></div>
                             <nav id="main_menu">
