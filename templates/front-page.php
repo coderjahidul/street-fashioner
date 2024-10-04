@@ -87,34 +87,31 @@ get_header(); ?>
                     <div class="span6">
                     	<h2 class="title">Latest news</h2>
                         <ul id="newscarousel" class="jcarousel-skin-tango">
-                            <li>
-                            	<div class="news_date">15 apr<span>2019</span></div>
-                                <div class="news_t"><a href="#">Sed massa dui, porta corper ac varius!</a></div>
-                                <div class="news">Posted by <a href="#">Anna Smith</a>  /  In <a href="#">City</a><br/>Tags: <a href="#">eget</a>, <a href="#">mauris</a></div>
-                                <div class="news_info">Tristique tincidunt cursus sed, ornare ncidunt eque a tristique. Phasellus porttitor mollis tortor etoq vestibulum. Quisque non lacus tortor, quis cumsan nibh. Lorem ipsum dolor sit amet, consectetur icing elit. Nullam pulvinarteses lorem sed dui euismod eget. <a href="#">Read more...</a></div>
-                                <div class="clear"></div>
-                            </li>
-                            <li>
-                            	<div class="news_date">05 apr<span>2019</span></div>
-                                <div class="news_t"><a href="#">eget &amp; massa viviamu marius mas</a></div>
-                                <div class="news">Posted by <a href="#">Anna Smith</a>  /  In <a href="#">City</a><br/>Tags: <a href="#">eget</a>, <a href="#">mauris</a></div>
-                                <div class="news_info">Cursus sed, aliquet nec odio. Integer ornare tincidunt neque a tristique. Phasellus porttitor millis tortor etoq vestibulum. Quisque ont lacus toirtor uis accumsan nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ulvinarteses em sed. <a href="#">Read more...</a></div>
-                                <div class="clear"></div>
-                            </li>
-                            <li>
-                            	<div class="news_date">15 apr<span>2019</span></div>
-                                <div class="news_t"><a href="#">Sed massa dui, porta corper ac varius!</a></div>
-                                <div class="news">Posted by <a href="#">Anna Smith</a>  /  In <a href="#">City</a><br/>Tags: <a href="#">eget</a>, <a href="#">mauris</a></div>
-                                <div class="news_info">Tristique tincidunt cursus sed, ornare ncidunt eque a tristique. Phasellus porttitor mollis tortor etoq vestibulum. Quisque non lacus tortor, quis cumsan nibh. Lorem ipsum dolor sit amet, consectetur icing elit. Nullam pulvinarteses lorem sed dui euismod eget. <a href="#">Read more...</a></div>
-                                <div class="clear"></div>
-                            </li>
-                            <li>
-                            	<div class="news_date">05 apr<span>2019</span></div>
-                                <div class="news_t"><a href="#">eget &amp; massa viviamu marius mas</a></div>
-                                <div class="news">Posted by <a href="#">Anna Smith</a>  /  In <a href="#">City</a><br/>Tags: <a href="#">eget</a>, <a href="#">mauris</a></div>
-                                <div class="news_info">Cursus sed, aliquet nec odio. Integer ornare tincidunt neque a tristique. Phasellus porttitor millis tortor etoq vestibulum. Quisque ont lacus toirtor uis accumsan nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ulvinarteses em sed. <a href="#">Read more...</a></div>
-                                <div class="clear"></div>
-                            </li>
+                            <?php 
+                            // Get all posts
+                            $args = array(
+                                'numberposts' => 4,
+                                'orderby' => 'post_date',
+                                'order' => 'DESC',
+                                'post_type' => 'post',
+                                'post_status' => 'publish',
+                            );
+                            $myposts = get_posts( $args );
+                            foreach( $myposts as $post ) {
+                                setup_postdata($post);
+                                ?>
+                                <li>
+                                    <div class="news_date"><?php echo get_the_date('d'); ?> <?php echo get_the_date('M');?><span><?php echo get_the_date('Y');?></span></div>
+                                    <div class="news_t"><a href="<?php the_permalink(); ?>"><?php echo get_the_title();?></a></div>
+                                    <div class="news">Posted by <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) );?>"><?php the_author();?></a><br/>Tags: <a href="<?php echo get_tag_link( $tag->term_id );?>"><?php the_tags( '', ', ' );?></a></div>
+                                    <!-- post content 30 word and after add read more button -->
+                                    <div class="news_info"><?php echo wp_trim_words( get_the_content(), 30, '<a href="' . esc_url( get_permalink() ) . '"> Read more...</a>' );?></div>
+                                    <div class="clear"></div>
+                                </li>
+                            <?php
+                                
+                            }
+                            ?>
                          </ul> 
                     </div>       		
             	</div>
