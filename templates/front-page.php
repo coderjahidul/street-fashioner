@@ -51,43 +51,26 @@ get_header(); ?>
         <!--featured works-->
         <div class="wrap block carousel_block">
             <div class="container">
-            	<h2 class="upper">featured works</h2>
-            	<div class="row">
+                <h2 class="upper"><?php echo esc_html( get_theme_mod( 'gallery_section_title' ) ); ?></h2>
+                <div class="row">
                     <div class="span12">
                         <ul id="mycarousel" class="jcarousel-skin-tango">
-                            <li>
-                            	<div class="hover_img">
-                                	<a href="<?php echo get_template_directory_uri(); ?>/img/featured_works/1.jpg" rel="prettyPhoto[portfolio1]"><img src="<?php echo get_template_directory_uri(); ?>/img/featured_works/1.jpg" alt="" /><span class="portfolio_zoom1"></span></a>                                    
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="hover_img">
-                                	<a href="<?php echo get_template_directory_uri(); ?>/img/featured_works/2.jpg" rel="prettyPhoto[portfolio1]"><img src="<?php echo get_template_directory_uri(); ?>/img/featured_works/2.jpg" alt="" /><span class="portfolio_zoom1"></span></a>                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="hover_img">
-                                	<a href="<?php echo get_template_directory_uri(); ?>/img/featured_works/3.jpg" rel="prettyPhoto[portfolio1]"><img src="<?php echo get_template_directory_uri(); ?>/img/featured_works/3.jpg" alt="" /><span class="portfolio_zoom1"></span></a>                                    
-                                </div>
-                            </li> 
-                            <li>
-                                <div class="hover_img">
-                                	<a href="<?php echo get_template_directory_uri(); ?>/img/featured_works/4.jpg" rel="prettyPhoto[portfolio1]"><img src="<?php echo get_template_directory_uri(); ?>/img/featured_works/4.jpg" alt="" /><span class="portfolio_zoom1"></span></a>                                    
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="hover_img">
-                                	<a href="<?php echo get_template_directory_uri(); ?>/img/featured_works/1.jpg" rel="prettyPhoto[portfolio1]"><img src="<?php echo get_template_directory_uri(); ?>/img/featured_works/1.jpg" alt="" /><span class="portfolio_zoom1"></span></a>                                    
-                                </div>
-                            </li>
-                            <li>
-                            	<div class="hover_img">
-                                	<a href="<?php echo get_template_directory_uri(); ?>/img/featured_works/2.jpg" rel="prettyPhoto[portfolio1]"><img src="<?php echo get_template_directory_uri(); ?>/img/featured_works/2.jpg" alt="" /><span class="portfolio_zoom1"></span></a>                                    
-                                </div>
-                            </li>                                                       
-                        </ul>                         
-                    </div>                
-                </div>                
+                            <?php for ( $i = 1; $i <= 10; $i++ ) : ?>
+                                <?php $image = get_theme_mod( 'featured_work_image_' . $i ); ?>
+                                <?php if ( $image ) : ?>
+                                    <li>
+                                        <div class="hover_img">
+                                            <a href="<?php echo esc_url( $image ); ?>" rel="prettyPhoto[portfolio1]">
+                                                <img src="<?php echo esc_url( $image ); ?>" alt="Featured Work" />
+                                                <span class="portfolio_zoom1"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>        
         <!--//featured works-->

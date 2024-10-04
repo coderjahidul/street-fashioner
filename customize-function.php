@@ -96,3 +96,39 @@ function streetfashioner_customize_register_home_planning( $wp_customize ) {
 add_action( 'customize_register', 'streetfashioner_customize_register_home_planning' );
 
 
+// Gallery section
+function streetfashioner_customize_register_featured_works( $wp_customize ) {
+    // Gallery Section Title
+    $wp_customize->add_setting( 'gallery_section_title', array(
+        'default'   => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control( 'gallery_section_title', array(
+        'label'    => __( 'Gallery Section Title', 'streetfashioner' ),
+        'section'  => 'featured_works_section',
+        'type'     => 'text',
+    ));
+    
+    // Add Featured Works Section
+    $wp_customize->add_section( 'featured_works_section', array(
+        'title'    => __( 'Gallery Section', 'streetfashioner' ),
+        'priority' => 30,
+    ) );
+
+    // Loop through to add settings for each featured work (image and link)
+    for ( $i = 1; $i <= 10; $i++ ) {
+        // Image upload setting
+        $wp_customize->add_setting( 'featured_work_image_' . $i, array(
+            'default'   => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'featured_work_image_' . $i, array(
+            'label'    => __( 'Featured Image ' . $i, 'streetfashioner' ),
+            'section'  => 'featured_works_section',
+            'settings' => 'featured_work_image_' . $i,
+        ) ) );
+    }
+}
+add_action( 'customize_register', 'streetfashioner_customize_register_featured_works' );
+
