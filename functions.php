@@ -70,3 +70,4 @@ require_once('customize-function.php');
 
 // include widgets
 include_once('widgets/text-widget.php');
+include_once('widgets/recent-posts-widget.php');
