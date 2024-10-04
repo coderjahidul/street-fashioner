@@ -72,3 +72,4 @@ require_once('customize-function.php');
 include_once('widgets/text-widget.php');
 include_once('widgets/recent-posts-widget.php');
 include_once('widgets/tags-widget.php');
+include_once('widgets/links-widget.php');
