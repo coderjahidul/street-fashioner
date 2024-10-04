@@ -79,18 +79,11 @@ get_header(); ?>
         <div class="wrap block">
         	<div class="container">
         		<div class="row news_block">
-        			<div class="span6">
-                    	<h2 class="title">egestas sed convallis metus!</h2>
-                        <p>Vestibulum tincidunt ultricies aliquam. Donec porta mi nec tortor sagittis rhoncus. Nunc ante arcu, ornaresit gravida rutrum ut, facilisis et lacus. Aliquam mauris arcu, interdum eu fermentum tincidunt.</p>
-                        <ul class="the-icons grey">
-                        	<li><i class="icon-time"></i> Curabitur eu placerat massa.</li>
-                            <li><i class="icon-star"></i> Integer adipiscing velit nec purus facilisis ut pharetra!</li>
-                            <li><i class="icon-camera"></i> Nunc mollis, nisl vel tincidunt vestibulum, lacus libero mollis urna, eu dapibus lacus nisi et nulla.</li>
-                            <li><i class="icon-qrcode"></i> Curabitur veltpat magna. Pellentesque pellentesque dapibus dictum. </li>
-                            <li><i class="icon-user"></i> Nulla ut erat ut massa molestie commodo.</li>
-                        </ul>
-                        <p>Duis vel ligula et libero iaculis facilisis in vel justo. Duis lacinia orci ut tellus interdum dignissim. Fusce eugei scelerisque enim. Phasellus nec libero lectus. Quisque posuere mi non nibh facilisis semper. Donec lorem suscipit est sed mauris eleifend congue. Class taciti sociosqu litora torquent <a href="#" class="arrow_link">per conubia.</a></p>
-                    </div> 
+                <div class="span6">
+                    <h2 class="title"><?php echo esc_html( get_theme_mod( 'short_about_title', 'Site Short About Section' ) ); ?></h2>
+                    <p><?php echo wp_kses_post( get_theme_mod( 'short_about_content', 'Vestibulum tincidunt ultricies aliquam. Donec porta mi nec tortor sagittis rhoncus.' ) ); ?></p>
+                </div>
+
                     <div class="span6">
                     	<h2 class="title">Latest news</h2>
                         <ul id="newscarousel" class="jcarousel-skin-tango">

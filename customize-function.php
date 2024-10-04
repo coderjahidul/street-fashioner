@@ -132,3 +132,45 @@ function streetfashioner_customize_register_featured_works( $wp_customize ) {
 }
 add_action( 'customize_register', 'streetfashioner_customize_register_featured_works' );
 
+// Add Short About Section
+function custom_theme_customize_register( $wp_customize ) {
+
+    // Add About Section
+    $wp_customize->add_section( 'short_about_section', array(
+        'title'       => __( 'Short About Section', 'your-theme-textdomain' ),
+        'description' => __( 'Add a title and description for the short about section.', 'your-theme-textdomain' ),
+        'priority'    => 30,
+    ));
+
+    // Add Setting for About Title
+    $wp_customize->add_setting( 'short_about_title', array(
+        'default'   => __( 'Site Short About Section', 'your-theme-textdomain' ),
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    // Add Control for About Title
+    $wp_customize->add_control( 'short_about_title_control', array(
+        'label'    => __( 'About Title', 'your-theme-textdomain' ),
+        'section'  => 'short_about_section',
+        'settings' => 'short_about_title',
+        'type'     => 'text',
+    ));
+
+    // Add Setting for About Content
+    $wp_customize->add_setting( 'short_about_content', array(
+        'default'   => __( 'Vestibulum tincidunt ultricies aliquam. Donec porta mi nec tortor sagittis rhoncus.', 'your-theme-textdomain' ),
+        'sanitize_callback' => 'wp_kses_post', // Sanitizes HTML content
+    ));
+
+    // Add Control for About Content
+    $wp_customize->add_control( 'short_about_content_control', array(
+        'label'    => __( 'About Content', 'your-theme-textdomain' ),
+        'section'  => 'short_about_section',
+        'settings' => 'short_about_content',
+        'type'     => 'textarea',
+    ));
+
+}
+add_action( 'customize_register', 'custom_theme_customize_register' );
+
+
