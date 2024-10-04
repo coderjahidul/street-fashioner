@@ -6,10 +6,11 @@
 
 <div class="sidebar">
     <div class="widget">
-        <form class="form-search">
-            <input type="text" class="input-medium search-query">
-            <button type="submit" class="btn dark_btn">Search</button>
-        </form>
+
+        <!-- search form -->
+         <?php get_search_form();?>
+        <!-- /search form -->
+
     </div>
     <div class="widget">
         <h2 class="title"><span>text widjet</span></h2>
