@@ -13,15 +13,20 @@ function theme_setup() {
     // Add support for custom logo
     add_theme_support('custom-logo');
 
-    // Add support for custom menus
-    register_nav_menus(array(
-        'primary_menu' => __('Primary Menu', 'theme-textdomain'),
-    ));
-
     // Add support for title tag
     add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'theme_setup');
+
+function register_primary_menus() {
+    register_nav_menus(
+        array(
+            'primary-menu' => __( 'Primary Menu', 'streetfashioner' ),
+        )
+    );
+}
+add_action( 'init', 'register_primary_menus' );
+
 
 // Enqueue styles
 function my_theme_enqueue_styles() {
