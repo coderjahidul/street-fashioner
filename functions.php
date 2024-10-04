@@ -15,6 +15,9 @@ function theme_setup() {
 
     // Add support for title tag
     add_theme_support('title-tag');
+
+    // Add support for widgets
+    add_theme_support('widgets');
 }
 add_action('after_setup_theme', 'theme_setup');
 
@@ -47,6 +50,26 @@ function my_theme_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 
+// Register Sidebar
+function street_custom_sidebar_init() {
+    register_sidebar(array(
+        'name'          => __('Blog Sidebar', 'text_domain'), // Name of the widget area
+        'id'            => 'blog-sidebar', // Unique ID for the widget area
+        'before_widget' => '<div class="widget">', // HTML before each widget
+        'after_widget'  => '</div>', // HTML after each widget
+        'before_title'  => '<h2 class="title">', // HTML before widget title
+        'after_title'   => '</h2>', // HTML after widget title
+    ));
+}
+add_action('widgets_init', 'street_custom_sidebar_init');
+
+
 
 // require files customize function file
 require_once('customize-function.php');
+
+// include widgets
+include_once('widgets/text-widget.php');
+include_once('widgets/recent-posts-widget.php');
+include_once('widgets/tags-widget.php');
+include_once('widgets/links-widget.php');
