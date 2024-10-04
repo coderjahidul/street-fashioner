@@ -6,22 +6,17 @@
 
 <div class="sidebar">
     <div class="widget">
-
         <!-- search form -->
-         <?php get_search_form();?>
+        <?php get_search_form();?>
         <!-- /search form -->
+    </div>
 
+    <?php if (is_active_sidebar('blog-sidebar')) : ?>
+    <div id="secondary" class="widget-area">
+        <?php dynamic_sidebar('blog-sidebar'); ?>
     </div>
-    <div class="widget">
-        <h2 class="title"><span>text widjet</span></h2>
-        <p>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus
-            porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat
-            malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas
-            tristique orci ac sem. Duis ultricies pharetra magna. Donec accumsan malesuada
-            orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing
-            elit.</p>
-        <p><a href="#" class="arrow_link">Read more</a></p>
-    </div>
+    <?php endif; ?>
+    
     <div class="widget">
         <h2 class="title"><span>recent posts</span></h2>
         <ul class="recent_post">
