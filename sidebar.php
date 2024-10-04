@@ -17,10 +17,5 @@
     </div>
     <?php endif; ?>
 
-    <div class="widget">
-        <h2 class="title"><span>Latest tweets</span></h2>
-        <div class="tweet_block"></div>
-    </div>
 
-    
 </div>
