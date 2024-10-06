@@ -51,37 +51,55 @@
             	<div class="container">
                 	<div class="row">
                 		<div class="span5">
-                        	<div class="foot_logo"><a href="index.html"><img src="img/foot_logo.png" alt="" /></a></div>    
+                        	<div class="foot_logo"><a href="index.html"><img src="<?php echo get_template_directory_uri();?>/img/foot_logo.png" alt="" /></a></div>    
                         	<div class="copyright">&copy; 2020 Jessica White. Professional Fashion Photography. All Rights Reserved.</div>                        
                         </div>
                         <div class="span7">
                         	<div class="foot_right_block">
-                            	<div class="fright">
+                            	<!-- <div class="fright">
                                 	<form action="#" method="post">
                                         <input class="inp_search" name="name" type="text" value="Search the Site" onfocus="if (this.value == 'Search the Site') this.value = '';" onblur="if (this.value == '') this.value = 'Search the Site';" />                                        
                                     </form>
-                                </div>
+                                </div> -->
                                 <div class="follow_us">
-                                	<ul>
-                                        <li><a rel="tooltip" href="#" title="Facebook" class="facebook">Facebook</a></li>
-                                        <li><a rel="tooltip" href="#" title="Twitter" class="twitter">Twitter</a></li>
-                                        <li><a rel="tooltip" href="#" title="Tumbrl" class="tumbrl">Tumbrl</a></li>
-                                        <li><a rel="tooltip" href="#" title="Vimeo" class="vimeo">Vimeo</a></li>
-                                        <li><a rel="tooltip" href="#" title="Delicious" class="delicious">Delicious</a></li>
+                                    <ul>
+                                        <?php if ( get_theme_mod( 'facebook_link' ) ) : ?>
+                                            <li><a href="<?php echo esc_url( get_theme_mod( 'facebook_link' ) ); ?>" class="facebook" target="_blank">Facebook</a></li>
+                                        <?php endif; ?>
+                                        
+                                        <?php if ( get_theme_mod( 'vimeo_link' ) ) : ?>
+                                            <li><a href="<?php echo esc_url( get_theme_mod( 'vimeo_link' ) ); ?>" class="vimeo" target="_blank">Vimeo</a></li>
+                                        <?php endif; ?>
+
+                                        <?php if ( get_theme_mod( 'tumblr_link' ) ) : ?>
+                                            <li><a href="<?php echo esc_url( get_theme_mod( 'tumblr_link' ) ); ?>" class="tumblr" target="_blank">Tumblr</a></li>
+                                        <?php endif; ?>
+
+                                        <?php if ( get_theme_mod( 'twitter_link' ) ) : ?>
+                                            <li><a href="<?php echo esc_url( get_theme_mod( 'twitter_link' ) ); ?>" class="twitter" target="_blank">Twitter</a></li>
+                                        <?php endif; ?>
+
+                                        <?php if ( get_theme_mod( 'delicious_link' ) ) : ?>
+                                            <li><a href="<?php echo esc_url( get_theme_mod( 'delicious_link' ) ); ?>" class="delicious" target="_blank">Delicious</a></li>
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
                                 <div class="clear"></div>
                             
                             	<div class="clear"></div>
                             	<div class="foot_menu">
-                            		<ul>
-                                        <li><a href="index.html" class="current">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="scaffolding.html">features</a></li>
-                                        <li><a href="portfolio_2columns.html">Portfolio</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="contacts.html">Contacts</a></li>
-                                    </ul>
+                                <nav id="main_menu">
+                                    <div class="menu_wrap">
+                                        <?php
+                                        wp_nav_menu( array(
+                                            'theme_location' => 'primary-menu',
+                                            'container'      => false,
+                                            'menu_class'     => 'nav sf-menu',
+                                            'fallback_cb'    => false, // Remove default menu if no menu is set
+                                        ) );
+                                        ?>
+                                    </div>
+                                </nav>
                             	</div>
                             </div>                            
                         </div>
