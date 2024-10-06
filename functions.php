@@ -50,6 +50,51 @@ function my_theme_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 
+// Custom Post Template
+function custom_single_post_template( $template ) {
+    if ( is_single() ) {
+        // Path to your custom template file
+        $custom_template = dirname( __FILE__ ) . '/custom-single.php';
+
+        if ( file_exists( $custom_template ) ) {
+            return $custom_template;
+        }
+    }
+
+    return $template;
+}
+add_filter( 'template_include', 'custom_single_post_template' );
+
+// Custom Comment Form
+function custom_comment_form_fields($fields) {
+    $fields['author'] = '<input class="span5" type="text" name="author" value="Name" onFocus="if (this.value == \'Name\') this.value = \'\';" onBlur="if (this.value == \'\') this.value = \'Name\';" />';
+    
+    $fields['email'] = '<input class="span5" type="text" name="email" value="Email" onFocus="if (this.value == \'Email\') this.value = \'\';" onBlur="if (this.value == \'\') this.value = \'Email\';" />';
+    
+    return $fields;
+}
+add_filter('comment_form_default_fields', 'custom_comment_form_fields');
+
+function custom_comment_field($comment_field) {
+    $comment_field = '<textarea name="comment" class="span7" onFocus="if (this.value == \'Message...\') this.value = \'\';" onBlur="if (this.value == \'\') this.value = \'Message...\';">Message...</textarea>';
+    
+    return $comment_field;
+}
+add_filter('comment_form_field_comment', 'custom_comment_field');
+
+function custom_comment_form_submit_button($submit_button, $args) {
+    $submit_button = '<input type="reset" class="btn dark_btn" value="Clear form" />
+                      <input type="submit" class="btn send_btn" value="Post Comment" />';
+    
+    return $submit_button;
+}
+add_filter('comment_form_submit_button', 'custom_comment_form_submit_button', 10, 2);
+
+if (comments_open()) :
+    comment_form();
+endif;
+
+
 // Register Sidebar
 function street_custom_sidebar_init() {
     register_sidebar(array(
